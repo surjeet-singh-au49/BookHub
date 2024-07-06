@@ -1,14 +1,20 @@
 
-import Header from './components/Header'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { BookContextProvider } from './contexts/BookContext'
 import Home from './modules/Home'
+import BookDetail from './components/BookDetail'
 
 function App() {
 
   return (
-    <div>
-      <Header/>
-      <Home/>
-    </div>
+    <BookContextProvider>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/book/:id' element={<BookDetail/>}/>
+        </Routes>
+      </Router>
+    </BookContextProvider>
   )
 }
 

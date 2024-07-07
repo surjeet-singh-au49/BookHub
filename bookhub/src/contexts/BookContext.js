@@ -10,7 +10,8 @@ export const BookContextProvider = ({children}) => {
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 20;
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,15 +32,26 @@ export const BookContextProvider = ({children}) => {
     const filterByCategory = (category) => {
         setSelectedCategory(category);
         setFilteredBooks(category ? books.filter(book => book.category === category) : books);
+        setCurrentPage(1);
     };
     
     const filterByTitle = (title) => {
         if(selectedCategory) setFilteredBooks(books.filter(book => book.category === selectedCategory && book.title.toLowerCase().indexOf(title.toLowerCase()) != -1))
         else setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(title.toLowerCase())));
+        setCurrentPage(1);
+
     };
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+      };
 
-
-    return (<BookContext.Provider value={{books,filteredBooks,categories,selectedCategory, filterByCategory, filterByTitle,loading,error}}>
+      const resetFilters = () => {
+        setFilteredBooks(books);
+        setSelectedCategory('');
+      };
+    return (<BookContext.Provider value={{books,filteredBooks,categories,selectedCategory,resetFilters, currentPage,
+        itemsPerPage,
+        paginate, filterByCategory, filterByTitle,loading,error}}>
         {children}
     </BookContext.Provider>)
 }

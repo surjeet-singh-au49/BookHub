@@ -41,13 +41,13 @@ const BookList = () => {
   if (error) return <div>Error: {error.message || ""}</div>;
   return (
     <div>
-      <h2 className="text-6xl font-bold text-center mt-20">Books</h2>
-      <div className="flex items-center justify-end w-full mt-4 pr-10">
-      <span className=" font-bold"> Categories</span>
+      <h2 className="text-6xl font-bold text-center my-16">Books</h2>
+      <div className="flex items-center justify-end w-full pr-10">
+      <span className=" font-bold text-xl"> Categories :</span>
         <CategoryFilter />
       </div>
       <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 py-12 mx-auto">
           <div className="flex flex-wrap -m-4">
             {currentItems.map((book) => (
               <BookItem

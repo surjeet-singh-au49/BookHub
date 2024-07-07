@@ -4,6 +4,9 @@ import BookItem from "./BookItem";
 import { useNavigate } from "react-router-dom";
 import Filter from "./Filter";
 import CategoryFilter from "./CategoryFilter";
+import Loading from "./Loading";
+import Error from "./Error";
+import NoData from "./NoData";
 const BookList = () => {
   const { filteredBooks, loading, error ,currentPage, itemsPerPage, paginate } = useContext(BookContext);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -37,8 +40,8 @@ const BookList = () => {
     }
   };
 
-  if (loading) return <div>Loading....</div>;
-  if (error) return <div>Error: {error.message || ""}</div>;
+  if (loading) return <div><Loading/></div>;
+  if (error) return <div><Error/></div>;
   return (
     <div>
       <h2 className="text-6xl font-bold text-center my-16">Books</h2>
@@ -49,13 +52,13 @@ const BookList = () => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-12 mx-auto">
           <div className="flex flex-wrap -m-4">
-            {currentItems.map((book) => (
+            {currentItems && currentItems.length ? currentItems.map((book) => (
               <BookItem
                 key={book.id}
                 book={book}
                 onClick={() => handleClick(book.id)}
               />
-            ))}
+            )) : <NoData/>}
           </div>
         </div>
       </section>

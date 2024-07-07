@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { BookContext } from "../contexts/BookContext";
 const Footer = () => {
+  const { loading} = useContext(BookContext);
+
   return (
-    <footer className="text-gray-600 body-font shadow-inner border-t border-gray-300">
+    !loading ? <footer className="text-gray-600 body-font shadow-inner border-t border-gray-300">
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
           <svg
@@ -61,7 +65,7 @@ const Footer = () => {
           </a>
         </span>
       </div>
-    </footer>
+    </footer> : null
   );
 };
 

@@ -12,9 +12,9 @@ function BookDetail() {
     return (
         <section className="text-gray-600 body-font overflow-hidden">
             <div className="container px-5 py-24 mx-auto">
-                <div className="lg:w-4/5 mx-auto flex flexWrap">
-                <img alt="ecommerce" className="w-1/2 h-fit  object-cover object-center rounded" src={book.thumbnail || 'https://dummyimage.com/400x400'}/>
-                <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                <div className="lg:w-4/5 mx-auto md:flex flexWrap">
+                <img alt="ecommerce" className="md:w-1/2 h-[400px]  object-cover object-center rounded" src={book.thumbnail || 'https://dummyimage.com/400x400'}/>
+                <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{book.title}</h1>
                     <p className="leading-relaxed text-gray-900 text-xl title-font font-serif mb-1">by {book.author}</p>
 

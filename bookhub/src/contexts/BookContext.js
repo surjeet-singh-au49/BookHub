@@ -45,8 +45,11 @@ export const BookContextProvider = ({children}) => {
         setCurrentPage(pageNumber);
       };
 
-
-    return (<BookContext.Provider value={{books,filteredBooks,categories,selectedCategory, currentPage,
+      const resetFilters = () => {
+        setFilteredBooks(books);
+        setSelectedCategory('');
+      };
+    return (<BookContext.Provider value={{books,filteredBooks,categories,selectedCategory,resetFilters, currentPage,
         itemsPerPage,
         paginate, filterByCategory, filterByTitle,loading,error}}>
         {children}

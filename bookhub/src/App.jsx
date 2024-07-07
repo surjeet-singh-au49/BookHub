@@ -9,8 +9,8 @@ function App() {
 
   return (
     <BookContextProvider>
-      <Header/>
       <Router>
+      <Header/>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/book/:id' element={<BookDetail/>}/>

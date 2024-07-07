@@ -5,15 +5,11 @@ import { useNavigate } from "react-router-dom";
 import Filter from "./Filter";
 import CategoryFilter from "./CategoryFilter";
 const BookList = () => {
-  const { filteredBooks, loading, error } = useContext(BookContext);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
-
+  const { filteredBooks, loading, error ,currentPage, itemsPerPage, paginate } = useContext(BookContext);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredBooks.slice(indexOfFirstItem, indexOfLastItem);
   const navigateTo = useNavigate();
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const totalPages = Math.ceil(filteredBooks.length / itemsPerPage);
   const maxVisiblePages = 5; // Adjust this number based on how many pages you want to show
 

@@ -11,17 +11,38 @@ const BookList = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredBooks.slice(indexOfFirstItem, indexOfLastItem);
   const navigateTo = useNavigate ();
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const totalPages = Math.ceil(filteredBooks.length / itemsPerPage);
+  const maxVisiblePages = 5; // Adjust this number based on how many pages you want to show
 
+  // Calculate the range of page buttons to render
+  let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+  
+  // Adjust startPage again if the range is truncated
+  if (endPage - startPage + 1 < maxVisiblePages) {
+    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+  }
+  
   const handleClick = (id) => {
     navigateTo(`/book/${id}`);
   };
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      paginate(currentPage - 1);
+    }
+  };
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      paginate(currentPage + 1);
+    }
+  };
+
   if(loading) return <div>Loading....</div>
   if(error) return <div>Error: {error.message || ''}</div>
   return (
     <div>
-        {/* <Hero/> */}
         <h2 className='text-6xl font-bold text-center mt-20'>Books</h2>
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto">
@@ -32,11 +53,35 @@ const BookList = () => {
                 </div>
             </div>
         </section>
-        <div className="pagination">
-        {Array.from({ length: Math.ceil(filteredBooks.length / itemsPerPage) }, (_, i) => (
-          <button key={i} onClick={() => paginate(i + 1)}>{i + 1}</button>
-        ))}
-      </div>
+        <div className="pagination flex justify-center mt-8">
+      {currentPage > 1 && (
+        <button
+          onClick={handlePrevious}
+          className="bg-gray-200 border border-gray-300 text-gray-800 py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-gray-300"
+        >
+          Previous
+        </button>
+      )}
+      {Array.from({ length: endPage - startPage + 1 }, (_, i) => (
+        <button
+          key={startPage + i}
+          onClick={() => paginate(startPage + i)}
+          className={`bg-gray-200 border border-gray-300 text-gray-800 py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-gray-300 ${
+            currentPage === startPage + i ? 'bg-blue-500 text-white border-blue-500' : ''
+          }`}
+        >
+          {startPage + i}
+        </button>
+      ))}
+      {currentPage < totalPages && (
+        <button
+          onClick={handleNext}
+          className="bg-gray-200 border border-gray-300 text-gray-800 py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-gray-300"
+        >
+          Next
+        </button>
+      )}
+    </div>
     </div>
   )
 }

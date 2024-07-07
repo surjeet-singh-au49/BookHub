@@ -6,13 +6,14 @@ import Hero from "../components/Hero"
 const Home = () => {
   return (
   <> 
-  <Hero/>
-  <div className="flex items-center justify-evenly w-full">
-  <Filter />
-  <CategoryFilter />
+  {/* <Hero/> */}
+  <div className="">
+      <div className="flex items-center justify-evenly w-full mt-4">
+        <Filter />
+        <CategoryFilter />
+      </div>
+      <BookList />
   </div>
-  
-  <BookList />
   </>
 )
 }

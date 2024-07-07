@@ -9,7 +9,6 @@ export const BookContextProvider = ({children}) => {
     const [error, setError] = useState(null);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [categories, setCategories] = useState([]);
-    console.log("🚀 ~ BookContextProvider ~ categories:", categories)
     const [selectedCategory, setSelectedCategory] = useState('');
 
     useEffect(() => {
@@ -31,11 +30,11 @@ export const BookContextProvider = ({children}) => {
     
     const filterByCategory = (category) => {
         setSelectedCategory(category);
-        setFilteredBooks(category ? books.filter(book => book.category === category) : books);
+        setFilteredBooks(category ? filteredBooks.filter(book => book.category === category) : books);
       };
     
     const filterByTitle = (title) => {
-    setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(title.toLowerCase())));
+    setFilteredBooks(filteredBooks.filter(book => book.title.toLowerCase().includes(title.toLowerCase())));
     };
 
 

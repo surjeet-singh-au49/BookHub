@@ -30,11 +30,12 @@ export const BookContextProvider = ({children}) => {
     
     const filterByCategory = (category) => {
         setSelectedCategory(category);
-        setFilteredBooks(category ? filteredBooks.filter(book => book.category === category) : books);
-      };
+        setFilteredBooks(category ? books.filter(book => book.category === category) : books);
+    };
     
     const filterByTitle = (title) => {
-    setFilteredBooks(filteredBooks.filter(book => book.title.toLowerCase().includes(title.toLowerCase())));
+        if(selectedCategory) setFilteredBooks(books.filter(book => book.category === selectedCategory && book.title.toLowerCase().indexOf(title.toLowerCase()) != -1))
+        else setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(title.toLowerCase())));
     };
 
 

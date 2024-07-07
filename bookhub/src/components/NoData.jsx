@@ -1,7 +1,7 @@
 const NoData = () => {
     return (
-      <div className="flex items-center justify-center h-full">
-        <div className="text-gray-600 text-2xl">No data found</div>
+      <div className=" w-full text-center my-10">
+        <div className="text-gray-600 text-3xl font-bold">Sorry, no matches found.</div>
       </div>
     );
   };

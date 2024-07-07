@@ -1,19 +1,21 @@
-import  { useContext, useState } from 'react'
+import  { useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import { BookContext } from '../contexts/BookContext';
+import Loading from './Loading';
 
 function BookDetail() {
     const {id} = useParams();
     const {books, loading} = useContext(BookContext)
     const book = books.find(book => book.id == id)
-    if(loading) return <div>Fetching Book Data, Please wait...</div>
+    if(loading) return <div><Loading/></div>
     if(!book) return <div>Book Not Found, Please try something else.</div>
 
     return (
         <section className="text-gray-600 body-font overflow-hidden">
+            
             <div className="container px-5 py-24 mx-auto">
                 <div className="lg:w-4/5 mx-auto md:flex flexWrap">
-                <img alt="ecommerce" className="md:w-1/2 h-[400px]  object-cover object-center rounded" src={book.thumbnail || 'https://dummyimage.com/400x400'}/>
+                <img alt="ecommerce" className="w-full md:w-1/2 h-[400px]  object-cover object-center rounded" src={book.thumbnail || 'https://dummyimage.com/400x400'}/>
                 <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{book.title}</h1>
                     <p className="leading-relaxed text-gray-900 text-xl title-font font-serif mb-1">by {book.author}</p>

@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { BookContext } from "../contexts/BookContext";
 import BookItem from "./BookItem";
 import { useNavigate } from "react-router-dom";
-import Filter from "./Filter";
 import CategoryFilter from "./CategoryFilter";
 import Loading from "./Loading";
 import Error from "./Error";
 import NoData from "./NoData";
+
 const BookList = () => {
   const { filteredBooks, loading, error ,currentPage, itemsPerPage, paginate } = useContext(BookContext);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -44,13 +44,16 @@ const BookList = () => {
   if (error) return <div><Error/></div>;
   return (
     <div>
-      <h2 className="text-6xl font-bold text-center my-16">Books</h2>
-      <div className="flex items-center justify-end w-full pr-10">
+      <h2 className="text-6xl font-bold text-center my-16">Welcome To BookHub</h2>
+      <p className="text-2xl text-center mx-10">Discover your next favorite read at BookHub! Our platform lets you search for books across various genres and provides detailed information about each title. Whether you are into thrillers, history, or crime, find summaries, author bios, and reviews to guide your choices. Dive into the world of books with BookHub and start your literary journey today!</p>
+      
+      <section className="text-gray-600 body-font">
+      
+        <div className="container px-5 py-12 mx-auto">
+        <div className="flex  justify-end pb-10">
       <span className=" font-bold text-xl"> Categories :</span>
         <CategoryFilter />
       </div>
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-12 mx-auto">
           <div className="flex flex-wrap -m-4">
             {currentItems && currentItems.length ? currentItems.map((book) => (
               <BookItem

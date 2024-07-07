@@ -46,7 +46,7 @@ const BookList = () => {
   return (
     <div>
       <h2 className="text-6xl font-bold text-center mt-20">Books</h2>
-      <div className="flex items-center justify-between w-full mt-4">
+      <div className="flex items-center justify-end w-full mt-4 pr-10">
       <span className=" font-bold"> Categories</span>
         <CategoryFilter />
       </div>
@@ -63,22 +63,22 @@ const BookList = () => {
           </div>
         </div>
       </section>
-      <div className="pagination flex justify-center mt-8">
+      <div className="pagination flex justify-center mb-16">
         {currentPage > 1 && (
           <button
             onClick={handlePrevious}
-            className="bg-gray-200 border border-gray-300 text-gray-800 py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-gray-300"
+            className="bg-indigo-500 border rounded border-indigo-500 text-black py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-indigo-400"
           >
-            Previous
+            Prev
           </button>
         )}
         {Array.from({ length: endPage - startPage + 1 }, (_, i) => (
           <button
             key={startPage + i}
             onClick={() => paginate(startPage + i)}
-            className={`bg-gray-200 border border-gray-300 text-gray-800 py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-gray-300 ${
+            className={`bg-gray-200 border border-gray-300 text-gray-800 rounded py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-gray-300 ${
               currentPage === startPage + i
-                ? "bg-blue-500 text-white border-blue-500"
+                ? "bg-indigo-500 text-white border-blue-500"
                 : ""
             }`}
           >
@@ -88,7 +88,7 @@ const BookList = () => {
         {currentPage < totalPages && (
           <button
             onClick={handleNext}
-            className="bg-gray-200 border border-gray-300 text-gray-800 py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-gray-300"
+            className="bg-indigo-500 rounded border border-indigo-500 text-black py-2 px-4 mx-1 cursor-pointer transition-colors duration-300 hover:bg-indigo-400"
           >
             Next
           </button>

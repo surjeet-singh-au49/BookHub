@@ -20,7 +20,7 @@ const Filter = () => {
                     </svg>
                 </div>
                 <input
-                    className="h-full w-full pl-12 pr-4 text-sm text-gray-700 placeholder-gray-400 outline-none"
+                    className="h-full w-full  pr-4 text-lg text-gray-700 placeholder-gray-400 outline-none"
                     type="text"
                     id="search"
                     placeholder="Search book by title..."

@@ -12,7 +12,7 @@ const Filter = () => {
 
   return (
 
-<div className="max-w-md mx-auto">
+<div className="max-w-lg w-full">
             <div className="relative flex items-center w-full h-12 border-2 border-blue-500 rounded-lg bg-white overflow-hidden">
                 <div className="grid place-items-center h-full w-12 text-gray-500">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

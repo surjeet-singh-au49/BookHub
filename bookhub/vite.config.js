@@ -8,7 +8,7 @@ export default defineConfig({
     async transform(code, id) {
       if (!id.match(/src\/.*\.js$/))  return null
       return transformWithEsbuild(code, id, {
-        loader: { '.js': 'jsx' },
+        loader: 'jsx',
         jsx: 'automatic',
       })
     },
